@@ -1,0 +1,23 @@
+---
+date: "23 August 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+#23 August, 2018
+
+```{r, warning=FALSE, commet= FALSE}
+library(leaflet)
+lat <- c(seq(39.3, 39.21, length.out = 9), rep(39.25, 3), seq(39.3,39.21, length.out = 9), 39.29, seq(39.25, 39.21, length.out = 5))
+lng <- c(rep(-76.6,9), seq(-76.59, -76.57, length.out = 3), rep(-76.56, 9), rep(-76.53, 6))
+popup = rep("Hi", length(lat))
+color <- c(rep("darkblue", 21), rep("blue", 6))
+df = data.frame(lat = lat, lng = lng, popup = popup, color = color)
+df %>%
+        leaflet() %>% 
+        addTiles() %>%
+        addCircleMarkers(lng = lng, lat = lat, popup = popup, color = color)
+```
